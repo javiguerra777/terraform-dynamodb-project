@@ -1,6 +1,6 @@
-# Terraform S3 Bucket Project
+# Terraform DynamoDB Project
 
-This project uses Terraform to create a basic S3 bucket on AWS.
+This project uses Terraform to create a basic DynamoDB table on AWS.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ This project uses Terraform to create a basic S3 bucket on AWS.
 ├── .gitignore
 ├── .terraform/ 
 ├── .terraform.lock.hcl 
-├── bucket.tf 
+├── dynamodb_table.tf 
 ├── provider.tf 
 ├── README.md 
 ├── terraform.tfstate 
@@ -22,7 +22,7 @@ This project uses Terraform to create a basic S3 bucket on AWS.
 ```
 
 ## Files
-- `bucket.tf`: Defines the S3 bucket resource.
+- `dynamodb_table.tf`: Defines the DynamoDB table resource.
 - `provider.tf`: Configures the AWS provider.
 - `variables.tf`: Contains the variables used in the project.
 - `.gitignore`: Specifies files and directories to be ignored by Git.
@@ -35,15 +35,11 @@ This project uses Terraform to create a basic S3 bucket on AWS.
     git clone https://github.com/javiguerra777/terraform-s3-project.git
     ```
 
-2. After cloning the repository to your computer you will see a folder called `terraform-s3-project`, open this folder in a code editor of choice. 
+2. After cloning the repository to your computer you will see a folder called `terraform-dynamodb-project`, open this folder in a code editor of choice. 
 
 3.  **Create a `variables.tf` file:**
     You will need to create a `variables.tf` file and structure it like this before you run the terraform project:
     ```hcl
-    variable "bucket_name" {}
-    variable "acl_value" {
-      default = "private"
-    }
     variable "aws_access_key" {
       default = "aws access key"
     }
@@ -51,7 +47,42 @@ This project uses Terraform to create a basic S3 bucket on AWS.
       default = "aws secret key"
     }
     variable "region" {
-      default = "us-west-1"
+      default = "aws region"
+    }
+    variable "table_name" {
+      default = "table name"
+    }
+
+    variable "billing_mode" {
+      default = valid options are: "PAY_PER_REQUEST" or "PROVISIONED"
+    }
+
+    variable "partition_key" {
+      default = "name of partition key"
+    }
+
+    variable "sort_key" {
+      default = "name of sort key"
+    }
+
+    variable "read_capacity" {
+      default = 5
+      description = "Read Capacity Units"
+      type = number
+    }
+
+    variable "write_capacity" {
+      default = 5
+      description = "Write Capacity Units"
+      type = number
+    }
+
+    variable "environment" {
+      default = "name of environment"
+    }
+
+    variable "project_name" {
+      default = "name of project"
     }
     ```
 
@@ -76,20 +107,23 @@ This project uses Terraform to create a basic S3 bucket on AWS.
 
 5. Confirm the apply step by typing `yes`.
 
-6. If you go to your AWS S3 buckets you can see the newest s3 bucket you created
+6. If you go to your AWS DynamoDB tables you can see the newest table you created
 
 ## Variables
 
-- `bucket_name`: The name of the S3 bucket.
-- `acl_value`: The ACL policy for the bucket (default: `private`).
-- `aws_access_key`: Your AWS access key.
-- `aws_secret_key`: Your AWS secret key.
-- `region`: The AWS region to create the bucket in (default: `us-west-1`).
+- **table_name**: The name of the DynamoDB table.
+- **billing_mode**: The billing mode for the DynamoDB table (default: PAY_PER_REQUEST).
+- **partition_key**: The partition key for the DynamoDB table.
+- **sort_key**: The sort key for the DynamoDB table.
+- **read_capacity**: The read capacity units for the DynamoDB table (default: 5).
+- **write_capacity**: The write capacity units for the DynamoDB table (default: 5).
+- **environment**: The environment tag for the DynamoDB table.
+- **project_name**: The project name tag for the DynamoDB table.
 
 ## Outputs
 
-- `bucket_arn`: The ARN of the created S3 bucket.
-- `bucket_domain_name`: The domain name of the created S3 bucket.
+- **table_arn**: The ARN of the created DynamoDB table.
+- **table_name**: The name of the created DynamoDB table.
 
 ## Cleanup
 
