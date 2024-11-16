@@ -103,11 +103,9 @@ This project uses Terraform to create a basic DynamoDB table on AWS.
     terraform apply
     ```
 
-4. When prompted enter a bucket name of choice for your s3 bucket (this value must be unique) 
+4. Confirm the apply step by typing `yes`.
 
-5. Confirm the apply step by typing `yes`.
-
-6. If you go to your AWS DynamoDB tables you can see the newest table you created
+5. If you go to your AWS DynamoDB tables you can see the newest table you created
 
 ## Variables
 
