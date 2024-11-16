@@ -32,7 +32,7 @@ This project uses Terraform to create a basic DynamoDB table on AWS.
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/javiguerra777/terraform-s3-project.git
+    git clone https://github.com/javiguerra777/terraform-dynamodb-project.git
     ```
 
 2. After cloning the repository to your computer you will see a folder called `terraform-dynamodb-project`, open this folder in a code editor of choice. 
